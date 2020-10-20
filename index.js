@@ -18,11 +18,11 @@ app.use(express.static('servicelist'))
 
 const client = new MongoClient(uri, { useNewUrlParser: true , useUnifiedTopology: true});
 client.connect(err => {
-  const CollectionReview = client.db(process.env.DB_NAME).collection("Reviews")
-  const CollectionService = client.db(process.env.DB_NAME).collection("Services");
-  const CollectionAdminEmail = client.db(process.env.DB_NAME).collection("AdminEmail");
-  const CollectionOrders = client.db(process.env.DB_NAME).collection("OrderDetails");
-  const CollectionFeedback=client.db(process.env.DB_NAME).collection("FeedbackCollection");
+  const CollectionReview = client.db(`${process.env.DB_NAME}`).collection("Reviews")
+  const CollectionService = client.db(`${process.env.DB_NAME}`).collection("Services");
+  const CollectionAdminEmail = client.db(`${process.env.DB_NAME}`).collection("AdminEmail");
+  const CollectionOrders = client.db(`${process.env.DB_NAME}`).collection("OrderDetails");
+  const CollectionFeedback=client.db(`${process.env.DB_NAME}`).collection("FeedbackCollection");
 
   // perform actions on the collection object
   // client.close();
