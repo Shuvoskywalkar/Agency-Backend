@@ -4,7 +4,7 @@ const cors=require('cors')
 const BodyParser=require('body-parser')
 const port = 600
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://Creative-User:JoyBangla@cluster0.znbhd.mongodb.net/Creative-Agency?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.znbhd.mongodb.net/${process.env.NAME}?retryWrites=true&w=majority`;
 const fileUpload = require('express-fileupload');
 const fs=require('fs')
 require('dotenv').config()
@@ -18,11 +18,11 @@ app.use(express.static('servicelist'))
 
 const client = new MongoClient(uri, { useNewUrlParser: true , useUnifiedTopology: true});
 client.connect(err => {
-  const CollectionReview = client.db("Creative-Agency").collection("Reviews")
-  const CollectionService = client.db("Creative-Agency").collection("Services");
-  const CollectionAdminEmail = client.db("Creative-Agency").collection("AdminEmail");
-  const CollectionOrders = client.db("Creative-Agency").collection("OrderDetails");
-  const CollectionFeedback=client.db("Creative-Agency").collection("FeedbackCollection");
+  const CollectionReview = client.db(process.env.DB_NAME).collection("Reviews")
+  const CollectionService = client.db(process.env.DB_NAME).collection("Services");
+  const CollectionAdminEmail = client.db(process.env.DB_NAME).collection("AdminEmail");
+  const CollectionOrders = client.db(process.env.DB_NAME).collection("OrderDetails");
+  const CollectionFeedback=client.db(process.env.DB_NAME).collection("FeedbackCollection");
 
   // perform actions on the collection object
   // client.close();
